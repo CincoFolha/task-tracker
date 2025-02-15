@@ -23,17 +23,11 @@ public class Task {
   }
 
   public String toJSONString() {
-    StringBuilder jsonString = new StringBuilder();
-    jsonString.append("{\"id\":\"");
-    jsonString.append(id);
-    jsonString.append("\",\"description\":\"");
-    jsonString.append(description);
-    jsonString.append("\"}");
-    return jsonString.toString();
+    return String.format("{\"id\":\"%d\",\"description\":\"%s\"}", id, description);
   }
 
   @Override
   public String toString() {
-    return "[" + id + "] " + description;
+    return String.format("[%d] %s", id, description);
   }
 }
