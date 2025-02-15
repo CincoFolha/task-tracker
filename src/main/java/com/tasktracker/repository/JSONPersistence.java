@@ -5,14 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JSONPersistence {
-  private static final String FILE_PATH = "task_data.json";
+  private static final String FILE_PATH = "data/task_data.json";
 
   public static String readFromJson() {
     try {
       return new String(Files.readAllBytes(Paths.get(FILE_PATH)));
     } catch (IOException e) {
       e.printStackTrace();
-      return "{}";
+      return "{\"taskList\":[]}";
     }
   }
   
