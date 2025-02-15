@@ -5,7 +5,7 @@ public class Task {
   private int id;
   private String description;
 
-  public Task(String decription) {
+  public Task(String description) {
     this.id = ++idCounter;
     this.description = description;
   }
@@ -16,6 +16,20 @@ public class Task {
 
   public String getDescription() {
     return description;
+  }
+
+  public void setDescription(String newDescription) {
+    this.description = newDescription;
+  }
+
+  public String toJSONString() {
+    StringBuilder jsonString = new StringBuilder();
+    jsonString.append("{\"id\":\"");
+    jsonString.append(id);
+    jsonString.append("\",\"description\":\"");
+    jsonString.append(description);
+    jsonString.append("\"}");
+    return jsonString.toString();
   }
 
   @Override
