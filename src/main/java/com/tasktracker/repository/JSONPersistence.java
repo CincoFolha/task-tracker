@@ -9,9 +9,11 @@ public class JSONPersistence {
 
   public static String readFromJson() {
     try {
-      return new String(Files.readAllBytes(Paths.get(FILE_PATH)));
+      File jsonFile = new File(FILE_PATH);
+      jsonFile.createNewFile();
+      return new String(Files.readAllBytes(jsonFile.toPath()));
     } catch (IOException e) {
-      return "{\"taskList\":[]}";
+      return "[]";
     }
   }
   
