@@ -18,10 +18,8 @@ public class JSONPersistence {
   }
   
   public static void saveToJson(String data) {
-    System.out.println(data);
     try {
       Files.write(Paths.get(FILE_PATH), data.getBytes());
-      System.out.println("JSON file saved successfully");
     } catch (IOException e) {
       e.printStackTrace();
     }
