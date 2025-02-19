@@ -1,5 +1,5 @@
 import com.tasktracker.repository.JSONPersistence;
-import com.tasktracker.service.TaskService;
+import com.tasktracker.service.TaskManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,21 +12,19 @@ public class TaskTracker {
       return;
     }
     
-    System.out.println("begin");
-    TaskService taskService = new TaskService();
+    TaskManager taskManager = new TaskManager();
 
     Map<String, Consumer<String[]>> commands = new HashMap<>();
-    commands.put("add", (params) -> taskService.addTask(params[1]));
-    commands.put("update", (params) -> taskService.updateTask(params[1], params[2]));
-    commands.put("delete", (params) -> taskService.removeTask(params[1]));
-    commands.put("list", (params) -> taskService.listTasks());
-    commands.put("mark-in-progress", (params) -> System.out.println("in progress"));
-    commands.put("mark-done", (params) -> System.out.println("in progress"));
+    commands.put("add",              (params) -> taskManager.addTask(params[1]));
+    commands.put("update",           (params) -> taskManager.updateTask(params[1], params[2]));
+    commands.put("delete",           (params) -> taskManager.removeTask(params[1]));
+    commands.put("list",             (params) -> taskManager.listTasks(params));
+    commands.put("mark-in-progress", (params) -> taskManager.updateStatus(params[1], "IN-PROGRESS"));
+    commands.put("mark-done",        (params) -> taskManager.updateStatus(params[1], "DONE"));
 
     commands.getOrDefault(args[0], (params) -> System.out.println("Illegal argument")).accept(args);
     
-    System.out.println("exit");
-    taskService.exit();
+    taskManager.exit();
     return;
   }
 }
