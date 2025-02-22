@@ -1,13 +1,13 @@
 
-### Task Tracker
+# Task Tracker
 
-## Como Executar
+## Installation
 
 ### **Clonar o Repositório**
-***sh
+'''bash
 git clone https://github.com/CincoFolha/task-tracker.git
 cd task-tracker
-***
+'''
 
 ## URL
 https://roadmap.sh/projects/task-tracker
