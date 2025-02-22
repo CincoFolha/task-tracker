@@ -47,6 +47,9 @@ gradlew.bat build
 ./gradlew run --args="list in-progress"
 ```
 
+## **Technologies Used**
+- **Java**
+- **Gradle**
 
 ## URL
 https://roadmap.sh/projects/task-tracker
