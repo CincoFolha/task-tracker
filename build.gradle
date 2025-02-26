@@ -11,7 +11,7 @@ plugins {
 }
 
 application {
-  mainClass = 'com.tasktracker.TaskTracker'
+  mainClass = 'com.tasktracker.TaskTrackerApplication'
 }
 
 repositories {
