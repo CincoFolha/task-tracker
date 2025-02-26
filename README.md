@@ -1,24 +1,30 @@
 
 # Task Tracker CLI
+Task Tracker is a productivity tool designed to help individuals manage tasks efficiently.
+
+## **Features**
+  - Create, edit, delete, and mark tasks as completed.
+  - Simple **command-line usage**
 
 ## Installation
 
-### **Clone the repository**
+### **1. Clone the repository**
 ```bash
 git clone https://github.com/CincoFolha/task-tracker.git
 cd task-tracker
 ```
 
-### **Build the project**
-Usando Gradle Wrapper:
+### **2. Build the project**
+Using Gradle Wrapper:
 ```bash
 ./gradlew build
 ```
-Ou no Windows:
+Or on Windows:
 ```bash
 gradlew.bat build
 ```
-### **Run the application**
+
+### **3. Run the application**
 ```bash
 ./gradlew run
 ```
