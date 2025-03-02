@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public class TaskTrackerApplication {
   public static void main(String[] args) {
     if (args.length < 1 || args.length > 3) {
-      System.out.println("Usage: java TaskTracker [command] [id_task]");
+      System.out.println("Usage: ./gradlew run --args=\"[command] [id_task]\"");
       return;
     }
     
