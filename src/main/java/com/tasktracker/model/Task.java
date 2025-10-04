@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Task {
+
   private static int idCounter = 0;
   private int id;
   private String description;
