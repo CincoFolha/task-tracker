@@ -129,6 +129,15 @@ public class Task {
       return value;
     }
 
+    public static TaskStatus fromString(String value) {
+      for (TaskStatus status : TaskStatus.values()) {
+        if (status.name().equalsIgnoreCase(value)) {
+          return status;
+        }
+      }
+      return null;
+    }
+
     @Override
     public String toString() {
       return value;
