@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class TaskTrackerApplication {
+public class Main {
   public static void main(String[] args) {
     if (args.length < 1 || args.length > 3) {
       System.out.println("Usage: ./gradlew run --args=\"[command] [id_task]\"");
