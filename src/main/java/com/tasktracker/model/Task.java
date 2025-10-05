@@ -40,11 +40,11 @@ public class Task {
   }
 
   public String getCreatedAt() {
-    return createdAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    return createdAt.format(ISO_FORMATTER);
   }
 
   public String getUpdatedAt() {
-    return updatedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME); 
+    return updatedAt.format(ISO_FORMATTER); 
   }
 
   public void setId(int newId) {
