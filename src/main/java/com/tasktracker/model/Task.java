@@ -13,14 +13,14 @@ public class Task {
   private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
   private int id;
   private String description;
-  private String status;
+  private TaskStatus status;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
   public Task(String description) {
     this.id = ++idCounter;
     this.description = description;
-    this.status = "TODO";
+    this.status = TaskStatus.TODO;
     this.createdAt = LocalDateTime.now();
     this.updatedAt = this.createdAt;
   }
@@ -54,7 +54,7 @@ public class Task {
     this.updatedAt = LocalDateTime.now();
   }
 
-  public void setStatus(String newStatus) {
+  public void setStatus(TaskStatus newStatus) {
     this.status = newStatus;
     this.updatedAt = LocalDateTime.now();
   }
