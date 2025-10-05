@@ -1,18 +1,25 @@
 package com.tasktracker.repository;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JSONPersistence {
+
   private static final String FILE_PATH = "listTask.json";
 
   public static String readFromJson() {
+    Path path = Paths.get(FILE_PATH);
     try {
-      File jsonFile = new File(FILE_PATH);
-      jsonFile.createNewFile();
-      return new String(Files.readAllBytes(jsonFile.toPath()));
+      if (!Files.exists(path)) {
+        Files.createFile(path);
+        return "[]";
+      }
+
+      String content = Files.readString(path, StandardCharsets.UTF_8);
+      return content.isBlank() ? "[]" : content;
     } catch (IOException e) {
+      e.printStackTrace();
       return "[]";
     }
   }
