@@ -85,13 +85,11 @@ public class Task {
     String createdAtStr = jsonMap.get("createdAt");
     String updatedAtStr = jsonMap.get("updatedAt");
 
-    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
     Task task = new Task(description);
     task.setId(id);
     task.setStatus(TaskStatus.fromString(statusString));
-    task.setCreatedAt(LocalDateTime.parse(createdAtStr, formatter));
-    task.setUpdatedAt(LocalDateTime.parse(updatedAtStr, formatter));
+    task.setCreatedAt(LocalDateTime.parse(createdAtStr, ISO_FORMATTER));
+    task.setUpdatedAt(LocalDateTime.parse(updatedAtStr, ISO_FORMATTER));
 
     idCounter.updateAndGet(currentId -> Math.max(currentId, id));
     
@@ -102,8 +100,8 @@ public class Task {
   public String toString() {
     return String.format("Id: %d, Description: %s, Status: %s, CreateAt: %s, UpdateAt: %s", 
         id, description, status, 
-        createdAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), 
-        updatedAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        createdAt.format(DISPLAY_FORMATTER), 
+        updatedAt.format(DISPLAY_FORMATTER));
   }
 
   public enum TaskStatus {
