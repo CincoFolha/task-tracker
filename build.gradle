@@ -18,8 +18,14 @@ repositories {
   mavenCentral()
 }
 
-application {
-  mainClass = 'com.tasktracker.TaskTrackerApplication'
+dependencies {
+  // Jackson para serialização/deserialização JSON
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+  implementation 'com.fasterxml.jackson.datatype:jackson-datatypejsr310:2.17.0'
+
+  // Dependências para testes (opcional)
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 application {
