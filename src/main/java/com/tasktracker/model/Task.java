@@ -101,7 +101,7 @@ public class Task {
     task.setCreatedAt(LocalDateTime.parse(createdAtStr, formatter));
     task.setUpdatedAt(LocalDateTime.parse(updatedAtStr, formatter));
 
-    idCounter = Math.max(idCounter, id);
+    idCounter.updateAndGet(currentId -> Math.max(currentId, id));
     
     return task;
   }
