@@ -2,12 +2,15 @@ package com.tasktracker.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Task {
 
-  private static int idCounter = 0;
+  private static final AtomicInteger idCounter = new AtomicInteger(0);
+  private static final DateTimeFormatter DISPLAY_FORMATTER = DataTimeFormatter.ofPattern("dd-MM-yyyy");
   private int id;
   private String description;
   private String status;
