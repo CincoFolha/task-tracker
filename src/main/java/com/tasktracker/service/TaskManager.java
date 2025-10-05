@@ -50,10 +50,11 @@ public class TaskManager {
       tasks.forEach(System.out::println);
       return;
     }
-    String filterStatus = params[1].toUpperCase();
+    String filterStatusString = params[1].toUpperCase();
+    Task.TaskStatus filterStatus = Task.TaskStatus.fromString(filterStatusString);
 
     tasks.stream()
-      .filter(task -> task.getStatus().equalsIgnoreCase(filterStatus))
+      .filter(task -> task.getStatus().name().equalsIgnoreCase(filterStatusString))
       .forEach(System.out::println);
   }
 
