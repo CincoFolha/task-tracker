@@ -111,4 +111,25 @@ public class Task {
         createdAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), 
         updatedAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
   }
+
+  public enum TaskStatus {
+    TODO("TODO"),
+    IN_PROGRESS("IN_PROGRESS"),
+    DONE("DONE");
+
+    private final String value;
+
+    TaskStatus(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return value;
+    }
+  }
 }
