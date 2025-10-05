@@ -61,8 +61,8 @@ public class Task {
     this.updatedAt = LocalDateTime.now();
   }
 
-  public void setCreateAt(LocalDateTime time) {
-    this.createAt = time;
+  public void setCreatedAt(LocalDateTime time) {
+    this.createdAt = time;
   }
 
   public void setUpdatedAt(LocalDateTime time) {
