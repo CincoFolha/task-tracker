@@ -10,10 +10,26 @@ plugins {
   id 'application'
 }
 
+group = 'com.tasktracker'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+repositories {
+  mavenCentral()
+}
+
 application {
   mainClass = 'com.tasktracker.TaskTrackerApplication'
 }
 
-repositories {
-  mavenCentral()
+application {
+  mainClass = 'com.tasktracker.Main'
+}
+
+test {
+  useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
 }
