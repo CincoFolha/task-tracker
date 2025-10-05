@@ -13,10 +13,10 @@ public class Task {
   private static final DateTimeFormatter ISO_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
   private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
   
-  private int id;
+  private final int id;
   private String description;
   private TaskStatus status;
-  private LocalDateTime createdAt;
+  private final LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
   public Task(String description) {
@@ -46,10 +46,6 @@ public class Task {
   public String getUpdatedAt() {
     return updatedAt.format(ISO_FORMATTER); 
   }
-
-  public void setId(int newId) {
-    this.id = newId;
-  }
  
   public void setDescription(String newDescription) {
     this.description = newDescription;
@@ -59,10 +55,6 @@ public class Task {
   public void setStatus(TaskStatus newStatus) {
     this.status = newStatus;
     this.updatedAt = LocalDateTime.now();
-  }
-
-  public void setCreatedAt(LocalDateTime time) {
-    this.createdAt = time;
   }
 
   public void setUpdatedAt(LocalDateTime time) {
