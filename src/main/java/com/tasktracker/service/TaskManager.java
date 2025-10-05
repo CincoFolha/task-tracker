@@ -42,7 +42,7 @@ public class TaskManager {
 
   public void updateStatus(String id, String newStatus) {
     Task task = findTask(id).orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
-    task.setStatus(newStatus);
+    task.setStatus(Task.TaskStatus.valueOf(newStatus));
   }
   
   public void listTasks(String[] params) {
