@@ -97,7 +97,7 @@ public class Task {
 
     Task task = new Task(description);
     task.setId(id);
-    task.setStatus(statusString);
+    task.setStatus(TaskStatus.fromString(statusString));
     task.setCreatedAt(LocalDateTime.parse(createdAtStr, formatter));
     task.setUpdatedAt(LocalDateTime.parse(updatedAtStr, formatter));
 
