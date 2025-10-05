@@ -20,7 +20,7 @@ public class Task {
   private LocalDateTime updatedAt;
 
   public Task(String description) {
-    this.id = ++idCounter;
+    this.id = idCounter.incrementAndGet();
     this.description = description;
     this.status = TaskStatus.TODO;
     this.createdAt = LocalDateTime.now();
