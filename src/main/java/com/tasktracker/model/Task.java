@@ -10,7 +10,6 @@ import java.util.Map;
 public class Task {
 
   private static final AtomicInteger idCounter = new AtomicInteger(0);
-  private static final DateTimeFormatter ISO_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
   private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
   
   private int id;
@@ -40,11 +39,11 @@ public class Task {
   }
 
   public String getCreatedAt() {
-    return createdAt.format(ISO_FORMATTER);
+    return createdAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
   }
 
   public String getUpdatedAt() {
-    return updatedAt.format(ISO_FORMATTER); 
+    return updatedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME); 
   }
 
   public void setId(int id) {
