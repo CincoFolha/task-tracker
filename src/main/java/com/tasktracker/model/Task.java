@@ -58,12 +58,12 @@ public class Task {
  
   public void setDescription(String newDescription) {
     this.description = newDescription;
-    this.updatedAt = LocalDateTime.now();
+    updateTimestamp();
   }
 
   public void setStatus(TaskStatus newStatus) {
     this.status = newStatus;
-    this.updatedAt = LocalDateTime.now();
+    updateTimestamp();
   }
 
   public void setCreatedAt(LocalDateTime time) {
@@ -72,6 +72,10 @@ public class Task {
 
   public void setUpdatedAt(LocalDateTime time) {
     this.updatedAt = time;
+  }
+
+  private void updateTimestamp() {
+    this.updatedAt = LocalDateTime.now();
   }
 
   public String toJSONString() {
