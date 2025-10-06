@@ -1,5 +1,6 @@
 package com.tasktracker.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -82,46 +83,28 @@ public class Task {
     this.updatedAt = LocalDateTime.now();
   }
 
-  public String toJSONString() {
-    return String.format("{\"id\":\"%d\",\"description\":\"%s\",\"status\":\"%s\",\"createdAt\":\"%s\",\"updatedAt\":\"%s\"}", 
-        id, description, status, getCreatedAt(), getUpdatedAt());
+  public String toJSON() {
+    try {
+      return objectMapper.writeValueAsString(this);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException("Erro serializing Task to JSON", e);
+    }
   }
 
-  public static Task parse(String json) {
-    json = json.replace("{", "").replace("}", "").replace("\"", "");
-    
-    String[] keyValuePairs = json.split(",\\s*");
-    Map<String, String> jsonMap = new HashMap<>();
-
-    for (String pair : keyValuePairs) {
-      String[] keyValue = pair.split(":\\s*", 2);
-      if (keyValue.length == 2) {
-        jsonMap.put(keyValue[0].trim(), keyValue[1].trim());
-      }
+  public static Task fromJSON(String json) {
+    try {
+      return objectMapper.readValue(json, Task.class);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException("Error deserializing Task from JSON", e);
     }
-
-    int id = Integer.parseInt(jsonMap.get("id"));
-    String description = jsonMap.get("description");
-    String statusString = jsonMap.get("status");
-    String createdAtStr = jsonMap.get("createdAt");
-    String updatedAtStr = jsonMap.get("updatedAt");
-
-    Task task = new Task(description);
-    task.setId(id);
-    task.setStatus(TaskStatus.fromString(statusString));
-    task.setCreatedAt(LocalDateTime.parse(createdAtStr, ISO_FORMATTER));
-    task.setUpdatedAt(LocalDateTime.parse(updatedAtStr, ISO_FORMATTER));
-
-    idCounter.updateAndGet(currentId -> Math.max(currentId, id));
-    
-    return task;
   }
 
   private static ObjectMapper createObjectMapper() {
-    ObjectMapper mapper = new ObjectMapepr();
+    ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JavaTimeModule());
     return mapper;
   }
+
 
   @Override
   public String toString() {
