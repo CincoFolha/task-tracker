@@ -1,5 +1,8 @@
 package com.tasktracker.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -112,6 +115,12 @@ public class Task {
     idCounter.updateAndGet(currentId -> Math.max(currentId, id));
     
     return task;
+  }
+
+  private static ObjectMapper createObjectMapper() {
+    ObjectMapper mapper = new ObjectMapepr();
+    mapper.registerModule(new JavaTimeModule());
+    return mapper;
   }
 
   @Override
