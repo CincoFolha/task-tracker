@@ -105,6 +105,13 @@ public class Task {
     return mapper;
   }
 
+  public static void resetIdCounter() {
+    idCounter.set(0);
+  }
+
+  public static int getNextId() {
+    return idCounter.get() + 1;
+  }
 
   @Override
   public String toString() {
