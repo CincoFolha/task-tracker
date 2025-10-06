@@ -19,6 +19,9 @@ public class Task {
   private LocalDateTime updatedAt;
 
   public Task(String description) {
+    if (description == null || description.trim().isEmpty()) {
+      throw new IllegalArgumentException("Description cannot be null or empty");
+    }
     this.id = idCounter.incrementAndGet();
     this.description = description;
     this.status = TaskStatus.TODO;
