@@ -11,6 +11,7 @@ public class Task {
 
   private static final AtomicInteger idCounter = new AtomicInteger(0);
   private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+  private static final ObjectMapper objectMapper = createObjectMapper();
   
   private int id;
   private String description;
