@@ -18,6 +18,9 @@ public class Task {
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
+  public Task() {
+  }
+
   public Task(String description) {
     if (description == null || description.trim().isEmpty()) {
       throw new IllegalArgumentException("Description cannot be null or empty");
