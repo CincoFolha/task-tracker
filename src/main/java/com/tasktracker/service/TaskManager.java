@@ -1,6 +1,7 @@
 package com.tasktracker.service;
 
-import com.tasktracker.repository.FileRepository;
+import com.tasktracker.repository.TaskRepositoryFactory;
+import com.tasktracker.repository.TaskRepository;
 import com.tasktracker.model.Task;
 
 import java.util.ArrayList;
@@ -9,21 +10,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class TaskManager {
-  private final List<Task> tasks = new ArrayList<>();
+  private final List<Task> tasks;
+  private final TaskRepository repository;
 
   public TaskManager() {
-    String loadData = JSONPersistence.readFromJson();
-    
-    if (loadData.startsWith("[") && loadData.endsWith("]")) {
-      loadData = loadData.substring(1, loadData.length() - 1);
-    }
-
-    String[] objects = loadData.split("},");
-    if (!objects[0].equals("")) {
-      for (int i = 0; i < objects.length; i++) {
-        tasks.add(Task.parse(objects[i]));
-      }
-    }
+    this.repository = TaskRepositoryFactory.createFileRepository();
+    this.tasks = repository.load();
   }
 
   public void addTask(String description) {
@@ -60,12 +52,8 @@ public class TaskManager {
   }
 
 
-  public void exit() {
-    String json = tasks.stream()
-      .map(task -> task.toJSONString())
-      .collect(Collectors.joining(",", "[", "]"));
-    
-    JSONPersistence.saveToJson(json);
+  public void exit() { 
+    repository.save(tasks);
   }
 
   private Optional<Task> findTask(String id) {
