@@ -1,5 +1,7 @@
 package com.tasktracker.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -17,10 +19,21 @@ public class Task {
   private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
   private static final ObjectMapper objectMapper = createObjectMapper();
   
+  @JsonProperty("id")
   private int id;
+
+  @JsonProperty("description")
   private String description;
+
+  @JsonProperty("status")
   private TaskStatus status;
+
+  @JsonProperty("createdAt")
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private LocalDateTime createdAt;
+
+  @JsonProperty("updateAt")
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private LocalDateTime updatedAt;
 
   public Task() {
