@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public interface TaskRepository {
+interface TaskRepository {
   
   void save(List<Task> tasks);
 
@@ -171,6 +171,16 @@ class FileRepository implements TaskRepository {
         throw new RepositoryException("Error creating repository file: " + filePath, e);
       }
     }
+  }
+}
+
+public class TaskRepositoryFactory {
+  public static TaskRepository createJSONRepository() {
+    return new FileRepository();
+  }
+
+  public static TaskRepository createJSONRepository(String fileName) {
+    return new FileRepository(fileName);
   }
 }
 
