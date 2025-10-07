@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class FileRepository implements TaskRepository {
+public class FileRepository implements TaskRepository {
 
   private static final Logger LOGGER = Logger.getLogger(FileRepository.class.getName());
   private static final String DEFAULT_FILE_PATH = "tasks.json";
