@@ -162,23 +162,3 @@ class FileRepository implements TaskRepository {
     }
   }
 }
-
-public class TaskRepositoryFactory {
-  public static TaskRepository createJSONRepository() {
-    return new FileRepository();
-  }
-
-  public static TaskRepository createJSONRepository(String fileName) {
-    return new FileRepository(fileName);
-  }
-}
-
-class RepositoryException extends RuntimeException {
-  public RepositoryException(String message, Throwable cause) {
-    super(message, cause);
-  }
-
-  public RepositoryException(String message) {
-    super(message);
-  }
-}
