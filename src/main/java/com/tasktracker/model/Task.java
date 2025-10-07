@@ -1,5 +1,6 @@
 package com.tasktracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Task {
 
   private static final AtomicInteger idCounter = new AtomicInteger(0);
@@ -32,7 +34,7 @@ public class Task {
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private LocalDateTime createdAt;
 
-  @JsonProperty("updateAt")
+  @JsonProperty("updatedAt")
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private LocalDateTime updatedAt;
 
@@ -68,14 +70,6 @@ public class Task {
 
   public LocalDateTime getUpdatedAt() {
     return updatedAt;
-  }
-
-  public String getCreatedAtFormatted() {
-    return createdAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-  }
-
-  public String getUpdatedAtFormatted() {
-    return updatedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME); 
   }
 
   public void setId(int id) {
