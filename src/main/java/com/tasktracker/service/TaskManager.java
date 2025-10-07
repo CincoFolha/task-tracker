@@ -36,7 +36,7 @@ public class TaskManager {
     tasks.add(newTask);
 
     LOGGER.log(Level.INFO, "Task added: ID={0}, Description={1}", new Object[]{newTask.getId(), description});
-    System.out.println("Task added successfully (ID: %d)%n", newTask.getId());
+    System.out.printf("Task added successfully (ID: %d)%n", newTask.getId());
   }
 
   public void updateTask(int id, String newDescription) {
@@ -54,8 +54,9 @@ public class TaskManager {
     tasks.removeIf(task -> task.getId() == Integer.parseInt(id));
   }
 
-  public void updateStatus(String id, String newStatus) {
-    Task task = findTask(id).orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
+  public void updateStatus(int id, String newStatus) {
+    Task task = findTaskById(id)
+      .orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
     task.setStatus(Task.TaskStatus.valueOf(newStatus));
   }
   

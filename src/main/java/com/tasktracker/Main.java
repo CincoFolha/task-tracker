@@ -1,6 +1,5 @@
 package com.tasktracker;
 
-import com.tasktracker.repository.JSONPersistence;
 import com.tasktracker.service.TaskManager;
 
 import java.util.HashMap;
