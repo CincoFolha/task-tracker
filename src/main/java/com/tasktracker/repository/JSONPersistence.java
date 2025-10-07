@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import com.tasktracker.repository.TaskRepository;
 import com.tasktracker.model.Task;
 
 import java.io.IOException;
@@ -17,19 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-interface TaskRepository {
-  
-  void save(List<Task> tasks);
-
-  List<Task> load();
-
-  boolean exists();
-
-  void clear();
-
-  int count();
-}
 
 class FileRepository implements TaskRepository {
 
