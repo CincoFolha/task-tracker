@@ -39,7 +39,7 @@ public class TaskManager {
     System.out.printf("Task added successfully (ID: %d)%n", newTask.getId());
   }
 
-  public void updateTask(int id, String newDescription) {
+  public void updateTask(String id, String newDescription) {
     Task task = findTaskById(id)
       .orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
     
@@ -54,7 +54,7 @@ public class TaskManager {
     tasks.removeIf(task -> task.getId() == Integer.parseInt(id));
   }
 
-  public void updateStatus(int id, String newStatus) {
+  public void updateStatus(String id, String newStatus) {
     Task task = findTaskById(id)
       .orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
     task.setStatus(Task.TaskStatus.valueOf(newStatus));
@@ -78,7 +78,7 @@ public class TaskManager {
     repository.save(tasks);
   }
 
-  private Optional<Task> findTaskById(int id) {
-    return tasks.stream().filter(task -> task.getId() == id).findFirst();
+  private Optional<Task> findTaskById(String id) {
+    return tasks.stream().filter(task -> task.getId() == Integer.parseInt(id)).findFirst();
   }
 }
