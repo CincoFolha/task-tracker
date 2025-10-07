@@ -62,11 +62,19 @@ public class Task {
     return status;
   }
 
-  public String getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public LocalDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public String getCreatedAtFormatted() {
     return createdAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
   }
 
-  public String getUpdatedAt() {
+  public String getUpdatedAtFormatted() {
     return updatedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME); 
   }
 
