@@ -58,16 +58,26 @@ public class Task {
   }
 
   public void setId(int id) {
+    if (id <= 0) {
+      throw new IllegalArgumentException("ID must be a positive integer");
+    }
     this.id = id;
+    idCounter.updateAndGet(current -> Math.max(current, id));
   }
  
-  public void setDescription(String newDescription) {
-    this.description = newDescription;
+  public void setDescription(String description) {
+    if (description == null || description.trim().isEmpty()) {
+      throw new IllegalArgumentException("Description cannot be null or empty");
+    }
+    this.description = description;
     updateTimestamp();
   }
 
-  public void setStatus(TaskStatus newStatus) {
-    this.status = newStatus;
+  public void setStatus(TaskStatus status) {
+    if (status == null) {
+      throw new IllegalArgumentException("Status cannot be null");
+    }
+    this.status = status;
     updateTimestamp();
   }
 
