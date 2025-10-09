@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class Main {
   public static void main(String[] args) {
     if (args.length < 1 || args.length > 3) {
-      System.out.println("Usage: ./gradlew run --args=\"[command] [id_task]\"");
+      printUsage();
       return;
     }
     
@@ -27,5 +27,21 @@ public class Main {
     
     taskManager.exit();
     return;
+  }
+
+  private static void printUsage() {
+    System.out.println("""
+        Usage: ./gradlew run --args="[command] [arguments]"
+
+        Commands:
+          add <description>           Add a new Task
+          update <id> <description>   Update task description
+          delete <id>                 Delete a task
+          list [status]               List all tasks or filter by status
+          mark-in-progress <id>       Mark task as in progress
+          mark-done <id>              Mark task as done
+
+        Status values: TODO, IN_PROGRESS, DONE
+        """);
   }
 }
