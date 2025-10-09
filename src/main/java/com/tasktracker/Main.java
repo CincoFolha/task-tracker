@@ -31,17 +31,17 @@ public class Main {
 
   private static void printUsage() {
     System.out.println("""
-        Usage: ./gradlew run --args="[command] [arguments]"
+          Usage: ./gradlew run --args="[command] [arguments]"
 
-        Commands:
-          add <description>           Add a new Task
-          update <id> <description>   Update task description
-          delete <id>                 Delete a task
-          list [status]               List all tasks or filter by status
-          mark-in-progress <id>       Mark task as in progress
-          mark-done <id>              Mark task as done
+          Commands:
+            add <description>           Add a new Task
+            update <id> <description>   Update task description
+            delete <id>                 Delete a task
+            list [status]               List all tasks or filter by status
+            mark-in-progress <id>       Mark task as in progress
+            mark-done <id>              Mark task as done
 
-        Status values: TODO, IN_PROGRESS, DONE
+          Status values: TODO, IN_PROGRESS, DONE
         """);
   }
 }
