@@ -35,8 +35,8 @@ public class TaskManager {
     Task newTask = new Task(description);
     tasks.add(newTask);
 
-    LOGGER.log(Level.INFO, "Task added: ID={0}, Description={1}", new Object[]{newTask.getId(), description});
-    System.out.printf("Task added successfully (ID: %d)%n", newTask.getId());
+    LOGGER.log(Level.INFO, "Task added: ID={0}, Description={1}",
+        new Object[]{newTask.getId(), description});
   }
 
   public void updateTask(String id, String newDescription) {
@@ -46,18 +46,29 @@ public class TaskManager {
     String oldDescription = task.getDescription();
     task.setDescription(newDescription);
 
-    LOGGER.log(Level.INFO, "Task {0} updated: ''{1}'' -> ''{2}''", new Object[]{id, oldDescription, newDescription});
-    System.out.printf("Task %d updated successfully%n", id);
+    LOGGER.log(Level.INFO, "Task {0} updated: ''{1}'' -> ''{2}''",
+        new Object[]{id, oldDescription, newDescription});
   }
   
   public void removeTask(String id) {
-    tasks.removeIf(task -> task.getId() == Integer.parseInt(id));
+    boolean removed = tasks.removeIf(task -> task.getId() == Integer.parseInt(id));
+
+    if (removed) {
+      LOGGER.log(Level.INFO, "Task {0} removed successfully", id);
+    } else {
+      LOGGER.log(Level.WARNING, "Attempted to remove non-existent task: {0}", id);
+    }
   }
 
   public void updateStatus(String id, String newStatus) {
     Task task = findTaskById(id)
       .orElseThrow(() -> new IllegalArgumentException("Task with ID " + id + " not found!"));
+
+    Task.TaskStatus oldStatus = task.getStatus();
     task.setStatus(Task.TaskStatus.valueOf(newStatus));
+
+    LOGGER.log(Level.INFO, "Task {0} status updated: {1} -> {2}",
+        new Object[]{id, oldStatus, newStatus});
   }
   
   public void listTasks(String[] params) {
@@ -74,8 +85,14 @@ public class TaskManager {
   }
 
 
-  public void exit() { 
-    repository.save(tasks);
+  public void exit() {
+    try {
+      repository.save(tasks);
+      LOGGER.log(Level.INFO, "Tasks saved successfully. Total: {0}", tasks.size());
+    } catch (Exception e) {
+      LOGGER.log(Level.SEVERE, "Error saving tasks", e);
+      throw new RuntimeException("Failed to save tasks", e);
+    }
   }
 
   private Optional<Task> findTaskById(String id) {
